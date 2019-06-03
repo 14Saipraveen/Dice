@@ -4,26 +4,30 @@
     margin: 0;
     padding: 0;
 }
-html{
+
+html {
     height : 100%;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    background-image: url("bg.jpg");
+    background-image: url("background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
 }
+
 header {
     padding: 50px;
 }
+
 h1 {
     font-family: 'Indie Flower', cursive;
     font-weight: lighter;
     font-size: 80px;
 }
+
 button {
     background-color: transparent ;
     color: #fff;
@@ -33,13 +37,14 @@ button {
     border-radius: 50px;
     width: 170px;
 }
+
 button:hover {
     background-color: #fff;
     color: brown;
     border: 3px solid #fff;
 }
 
-.gamepanel{
+.gamepanel {
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows: repeat(3, 90px);
@@ -65,7 +70,7 @@ button:hover {
     letter-spacing: 5px;
 }
 
-.roll-container{
+.roll-container {
     grid-column: 1/2;
     grid-row:2/3;
 }
@@ -76,7 +81,7 @@ button:hover {
 }
 
 
-.currscore {
+.curr-score {
     grid-column: 3/4;
     grid-row: 2/4;
     height: 155px;
@@ -87,12 +92,17 @@ button:hover {
     color: brown;
 }
 
-.currscore p{
+.curr-score p {
     padding: 10px 0;
     font-size: 22px;
 }
 
-#total{
+hr {
+    border: none;
+    border-top: 1px solid #ebedee;
+}
+
+#total {
     font-size: 48px;
     font-weight: bolder;
     text-align: center;
@@ -113,7 +123,7 @@ img {
     width: 100px;
 }
 
-#diceImgDOM {
+#diceImgObj {
     width: 170px;
 }
 
@@ -122,6 +132,6 @@ img {
     justify-self: center;
 }
 
-/*.no-display {
+.no-display {
     display: none;
-}*/
+}

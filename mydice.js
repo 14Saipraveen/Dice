@@ -1,17 +1,21 @@
+var dice;
+var totalScore = 0;
 
-// Single player dice game
+var totalPoints = document.getElementById("total");
 
-//1. Roll fn: Create a function for rolling the dice - that will generate random number between 1 to 6, adds the results up.
-//If player rolls 1, they lose. If player reaches 20, they win.
+function displayWon()
+{
+    var out = "";
+    out = "<img src='won.png'/>";
+    return out;
+}
 
-let dice;
-let totalScore = 0;
-let gamePlaying;
-
-
-
-const totalPoints = document.querySelector("#total");
-
+function displayLose()
+{
+    var out = "";
+    out = "<img src='lose.png'/>";
+    return out;
+}
 
 let diceImgs = {
     dice1:'img/dice1.png',
@@ -21,63 +25,49 @@ let diceImgs = {
     dice5:'img/dice5.png',
     dice6:'img/dice6.png',
   }
-
-const throwDice = () => {
-    //1.Generate random number  
+function throwDice(){
+        var out = "";
         dice = Math.floor((Math.random() * 6) + 1);
+        var diceObj = document.getElementById("diceImgObj");
+        diceObj.classList.remove("no-display");
+        diceObj.src = diceImgs['dice' + dice];
 
-    //2.Display result
-        //   const score = document.querySelector("#point");
-        //   score.innerHTML = dice;
-
-        const diceDOM = document.querySelector("#diceImgDOM");
-        diceDOM.classList.remove("no-display");
-        diceDOM.src = diceImgs['dice' + dice];
-
-    //3. If dice = 1, player loses
-        
         if (dice === 1) {
-            const loseMsg = document.querySelector("#display-lose");
-            loseMsg.innerHTML = '💀 YOU LOSE! You rolled 1!';
+            var loseMsg = document.getElementById("display-lose");
+            loseMsg.innerHTML = 'YOU LOSE! You rolled 1!';
             totalScore=0;
+            totalPoints.innerHTML = totalScore;
             toggleBtn(rollBtn);
-        } else {
-            hideMsg()
+            out = displayLose();
+            document.getElementById("emoji").innerHTML = out;
+        } 
+        else {
+            hideMsg();
             totalScore += dice;
             totalPoints.innerHTML = totalScore;
-        }
-        
-
-        if (totalScore >= 20) {
-            const winMsg = document.querySelector("#display-win");
-            winMsg.innerHTML = 'CONGRATULATIONS! YOU WON 🎉';
+        } 
+        if (totalScore >= 25) {
+            var winMsg = document.getElementById("display-win");
+            winMsg.innerHTML = 'CONGRATULATIONS! YOU WON !';
             totalScore = 0;
-            tooggleBtn(rollBtn);
+            toggleBtn(rollBtn);
+            out = displayWon();
+            document.getElementById("emoji").innerHTML = out;
         }
 }
 
-
-
-//HIDE MESSAGES
-const hideMsg = () => {
-    document.querySelector("#display-lose").innerHTML = '';
-    document.querySelector("#display-win").innerHTML = '';
+function hideMsg(){
+    document.getElementById("display-lose").innerHTML = '';
+    document.getElementById("display-win").innerHTML = '';
+    document.getElementById("emoji").innerHTML = '';
 }
 
 
-//START GAME BY ROLLING THE DICE
-const rollBtn = document.querySelector("#roll-btn");
+var rollBtn = document.getElementById("roll-btn");
 rollBtn.addEventListener("click",  throwDice)
 
-//DISABLE BUTTONS 
-// const disableBtn = (btn, time) => {
-//     btn.disabled=true;
-//     setTimeout(function(){
-//         btn.disabled=false;
-//     }, time);
-// }
 
-const toggleBtn = (btn) => {
+function toggleBtn(btn){
     if (btn.disabled === true) {
         btn.disabled = false;
     } else if (btn.disabled === false) {
@@ -85,23 +75,14 @@ const toggleBtn = (btn) => {
     };
 }
 
-
-//RESET GAME
-const reset = () => {
+function reset(){
     totalScore = 0;
-    document.querySelector("#diceImgDOM").classList.add("no-display");
-    totalPoints.textContent='0';
+    document.getElementById("diceImgObj").classList.add("no-display");
+    totalPoints.innerHTML=totalScore;
     hideMsg();
     toggleBtn(rollBtn);
 
 }
 
-const resetBtn = document.querySelector("#reset-btn");
+var resetBtn = document.getElementById("reset-btn");
 resetBtn.addEventListener("click", reset);
-
-
-
-
-/*window.onload=function(){
-    Nifty("div.playerArea", "big");
-}*/
